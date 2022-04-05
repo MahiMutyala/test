@@ -1,0 +1,20 @@
+<div class="todo-list" *ngIf='todoList.length; else noMatch'>
+  <div [class.completed]='todo.completed' [class.editing]='editIndex === i' *ngFor='let todo of todoList; let i=index'
+    (dblclick)="onDblClick(i)">
+
+    <div class="view">
+      <input class="toggle" type="checkbox" [attr.checked]='todo.completed' (change)='toggleComplete(i)' />
+      <label>{{ todo.text }}</label>
+      <button class="btn btn-sm btn-outline-danger destroy" (click)='removeTodo(i)'>delete</button>
+    </div>
+
+    <form role="form" novalidate (submit)='updateTodo(i)' *ngIf='editIndex === i'>
+      <input class="edit" [(ngModel)]='editText' (focusout)="onFocusOutEvent()" autofocus>
+    </form>
+
+  </div>
+</div>
+
+<ng-template #noMatch>
+  <div class="no-matches" *ngIf='filterMode !== "All"'>no todos are present</div>
+</ng-template>

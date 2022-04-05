@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="">Todos App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+      aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+
+<div class="todoapp">
+  <div class="header">
+    <div class="row">
+      <div class="col-10">
+        <form role="form" novalidate>
+          <div class="form-group">
+            <input type="email" class="form-control" [(ngModel)]='newTodoText' placeholder="What's on your mind today"
+              autofocus>
+          </div>
+        </form>
+      </div>
+      <div class="col-2 text-right">
+        <button type="button" class="btn btn-primary" (click)="addTodo()" [disabled]="!newTodoText">Add</button>
+      </div>
+    </div>
+  </div>
+  <section class="main">
+    <div class="row filter-col">
+      <div class="col-6">
+        <app-complete-all></app-complete-all>
+      </div>
+      <div class="col-6">
+        <ul class="filters">
+          <li>
+            <a routerLink="" [class.selected]='filterMode === "All"' (click)='changeFilterMode("All")'>All</a>
+          </li>
+          <li>
+            <a routerLink="" [class.selected]='filterMode === "Active"' (click)='changeFilterMode("Active")'>Active</a>
+          </li>
+          <li>
+            <a routerLink="" [class.selected]='filterMode === "Completed"'
+              (click)='changeFilterMode("Completed")'>Completed</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <app-todos-list [todoList]='todoList$ | async' [filterMode]='filterMode'></app-todos-list>
+  </section>
+  <footer class="footer">
+    <span class="todo-count">{{ (activeTodos$ | async).length }} items left</span>
+    <div class="text-right">
+      <button type="button" class="btn btn-link link-button" (click)='clearCompleted()'>Clear completed</button>
+    </div>
+  </footer>
+</div>

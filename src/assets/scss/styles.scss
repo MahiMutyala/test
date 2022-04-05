@@ -1,0 +1,240 @@
+@import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+:focus {
+	outline: 0;
+}
+
+.hidden {
+	display: none;
+}
+
+.text-right {
+  float: right;
+}
+
+.todoapp {
+  padding: 20px;
+	position: relative;
+}
+
+.todoapp input::-webkit-input-placeholder {
+	font-style: italic;
+	font-weight: 300;
+	color: #adadad;
+}
+
+.new-todo,
+.edit {
+	margin: 0;
+	font-size: 24px;
+	font-family: inherit;
+	font-weight: inherit;
+	line-height: 1.4em;
+	border: 0;
+	color: inherit;
+	padding: 6px;
+	border: 1px solid #999;
+	box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.new-todo {
+	padding: 16px 16px 16px 60px;
+	border: none;
+	background: rgba(0, 0, 0, 0.003);
+	box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+}
+
+.todo-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+  margin-top: 20px;
+}
+
+.todo-list div {
+	position: relative;
+	font-size: 24px;
+	border-bottom: 1px solid #ededed;
+}
+
+.todo-list div:last-child {
+	border-bottom: none;
+}
+
+.todo-list div.editing {
+	border-bottom: none;
+	padding: 0;
+}
+
+.todo-list div.editing .edit {
+	display: block;
+	padding: 12px 16px;
+	margin: 0 0 0 43px;
+}
+
+.todo-list div.editing .view {
+	display: none;
+}
+
+.todo-list div .toggle {
+	text-align: center;
+	width: 40px;
+	/* auto, since non-WebKit browsers doesn't support input styling */
+	height: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto 0;
+	border: none; /* Mobile Safari */
+	-webkit-appearance: none;
+	appearance: none;
+  cursor: pointer;
+}
+
+.todo-list div .toggle {
+	opacity: 0;
+}
+
+.todo-list div .toggle + label {
+	/*
+		Firefox requires `#` to be escaped - https://bugzilla.mozilla.org/show_bug.cgi?id=922433
+		IE and Edge requires *everything* to be escaped to render, so we do that instead of just the `#` - https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7157459/
+	*/
+	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E');
+	background-repeat: no-repeat;
+	background-position: center left;
+}
+
+.todo-list div .toggle[checked=true] + label {
+	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E');
+}
+
+.todo-list div label {
+	word-break: break-all;
+	padding: 15px 15px 15px 60px;
+	display: block;
+	line-height: 1.2;
+	transition: color 0.4s;
+}
+
+.todo-list div.completed label {
+	color: #d9d9d9;
+	text-decoration: line-through;
+}
+
+.todo-list div .destroy {
+	position: absolute;
+	right: 10px;
+	bottom: 0;
+	margin: auto 0;
+	margin-bottom: 11px;
+}
+
+.todo-list div:hover .destroy {
+	display: block;
+}
+
+.todo-list div .edit {
+	display: none;
+}
+
+.todo-list div.editing:last-child {
+	margin-bottom: -1px;
+}
+
+.footer {
+	color: #777;
+	padding: 10px 15px;
+	height: 20px;
+	border-top: 1px solid #e6e6e6;
+}
+
+.footer:before {
+	height: 50px;
+	overflow: hidden;
+}
+
+.todo-count {
+	float: left;
+	text-align: left;
+}
+
+.todo-count strong {
+	font-weight: 300;
+}
+
+.filter-col {
+  margin-top: 20px;
+}
+
+.filters {
+  float: right;
+	color: #777;
+  cursor: pointer;
+	list-style: none;
+}
+
+.filters li {
+	display: inline;
+}
+
+.filters li a {
+	color: inherit;
+	margin: 3px;
+	padding: 3px 7px;
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: 3px;
+}
+
+.filters li a:hover {
+	border-color: lightgray;
+}
+
+.filters li a.selected {
+	border-color: #136dfa;
+}
+
+.link-button {
+	line-height: 20px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.link-button:hover {
+	text-decoration: underline;
+}
+
+// /*
+// 	Hack to remove background from Mobile Safari.
+// 	Can't use it globally since it destroys checkboxes in Firefox
+// */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.toggle-all,
+	.todo-list li .toggle {
+		background: none;
+	}
+
+	.todo-list li .toggle {
+		height: 40px;
+	}
+}
+
+@media (max-width: 430px) {
+	.footer {
+		height: 50px;
+	}
+
+	.filters {
+		bottom: 10px;
+	}
+}
